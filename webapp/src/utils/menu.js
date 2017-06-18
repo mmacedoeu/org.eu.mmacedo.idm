@@ -1,0 +1,63 @@
+module.exports = [
+  {
+    id: 1,
+    icon: 'laptop',
+    name: 'Dashboard',
+    router: '/dashboard',
+  },
+  {
+    id: 2,
+    bpid: 1,
+    name: 'User Security',
+    icon: 'user',
+    router: '/user',
+  },
+  {
+    id: 21,
+    mpid: -1,
+    bpid: 2,
+    name: 'User Detail',
+    router: '/user/:id',
+  },
+  {
+    id: 3,
+    bpid: 1,
+    name: 'Test Request',
+    icon: 'api',
+    router: '/request',
+  },
+  {
+    id: 6,
+    bpid: 1,
+    name: 'Test Navigation',
+    icon: 'setting',
+  },
+  {
+    id: 61,
+    bpid: 6,
+    mpid: 6,
+    name: 'Test Navigation1',
+    router: '/navigation/navigation1',
+  },
+  {
+    id: 62,
+    bpid: 6,
+    mpid: 6,
+    name: 'Test Navigation2',
+    router: '/navigation/navigation2',
+  },
+  {
+    id: 621,
+    bpid: 62,
+    mpid: 62,
+    name: 'Test Navigation21',
+    router: '/navigation/navigation2/navigation1',
+  },
+  {
+    id: 622,
+    bpid: 62,
+    mpid: 62,
+    name: 'Test Navigation22',
+    router: '/navigation/navigation2/navigation2',
+  },
+]
