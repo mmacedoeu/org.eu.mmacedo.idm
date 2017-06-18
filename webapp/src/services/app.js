@@ -2,6 +2,16 @@ import { request, config } from '../utils'
 const { api } = config
 const { user, userLogout, userLogin } = api
 
+const userPermission = {
+  DEFAULT: [
+    'dashboard',
+  ],
+  ADMIN: [
+    'dashboard', 'users',
+  ],
+  DEVELOPER: ['dashboard', 'users',],
+}
+
 const adminUsers = [
   {
     id: 0,
