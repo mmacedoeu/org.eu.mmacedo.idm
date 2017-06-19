@@ -8,5 +8,5 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 @RepositoryRestResource(collectionResourceRel = "employee", path = "employee")
 public interface EmployeeRepository extends MongoRepository<Employee, String> {
-	List<Employee> findByManagerLastName(@Param("name") String name);
+	List<Employee> findByManager(@Param("name") String name);
 }

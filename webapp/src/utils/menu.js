@@ -21,6 +21,13 @@ module.exports = [
   },
   {
     id: 3,
+    bpid: 1,    
+    icon: 'team',
+    name: 'Employee CRUD',
+    router: '/employee',
+  },
+  {
+    id: 5,
     bpid: 1,
     name: 'Test Request',
     icon: 'api',

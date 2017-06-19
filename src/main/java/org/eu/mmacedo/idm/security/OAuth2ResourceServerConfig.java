@@ -1,13 +1,8 @@
 package org.eu.mmacedo.idm.security;
 
-import java.io.IOException;
-
-import org.apache.commons.io.IOUtils;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
-import org.springframework.core.io.ClassPathResource;
-import org.springframework.core.io.Resource;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.ResourceServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configurers.ResourceServerSecurityConfigurer;
@@ -25,6 +20,7 @@ public class OAuth2ResourceServerConfig extends ResourceServerConfigurerAdapter 
 		config.tokenServices(tokenServices());
 	}
 
+	@Bean
 	public JwtAccessTokenConverter accessTokenConverter() {
 		final JwtAccessTokenConverter converter = new JwtAccessTokenConverter();
 //		final Resource resource = new ClassPathResource("public.txt");
@@ -41,6 +37,7 @@ public class OAuth2ResourceServerConfig extends ResourceServerConfigurerAdapter 
 		return converter;
 	}
 
+	@Bean
 	public TokenStore tokenStore() {
 		return new JwtTokenStore(accessTokenConverter());
 	}

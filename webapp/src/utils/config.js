@@ -21,6 +21,7 @@ module.exports = {
     userLogin: '/oauth/token',
     userLogout: '/user/logout',
     userInfo: '/userInfo',
+    employee: '/employee',
     users: '/users',
     user: '/user/:id',
     dashboard: '/dashboard'

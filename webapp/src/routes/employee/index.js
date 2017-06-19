@@ -5,8 +5,8 @@ import { connect } from 'dva'
 import List from './List'
 import Modal from './Modal'
 
-const User = ({ location, dispatch, user, loading }) => {
-  const { list, pagination, currentItem, modalVisible, modalType, isMotion } = user
+const Employee = ({ location, dispatch, employee, loading }) => {
+  const { list, pagination, currentItem, modalVisible, modalType, isMotion } = employee
   const { pageSize } = pagination
 
   const modalProps = {
@@ -31,7 +31,7 @@ const User = ({ location, dispatch, user, loading }) => {
 
   const listProps = {
     dataSource: list,
-    loading: loading.effects['user/query'],
+    loading: loading.effects['employee/query'],
     pagination,
     location,
     isMotion,
@@ -48,13 +48,13 @@ const User = ({ location, dispatch, user, loading }) => {
     },
     onDeleteItem (id) {
       dispatch({
-        type: 'user/delete',
+        type: 'employee/delete',
         payload: id,
       })
     },
     onEditItem (item) {
       dispatch({
-        type: 'user/showModal',
+        type: 'employee/showModal',
         payload: {
           modalType: 'update',
           currentItem: item,
@@ -80,42 +80,41 @@ const User = ({ location, dispatch, user, loading }) => {
     },
     onSearch (fieldsValue) {
       fieldsValue.keyword.length ? dispatch(routerRedux.push({
-        pathname: '/user',
+        pathname: '/employee',
         query: {
           field: fieldsValue.field,
           keyword: fieldsValue.keyword,
         },
       })) : dispatch(routerRedux.push({
-        pathname: '/user',
+        pathname: '/employee',
       }))
     },
     onAdd () {
       dispatch({
-        type: 'user/showModal',
+        type: 'employee/showModal',
         payload: {
           modalType: 'create',
         },
       })
     },
     switchIsMotion () {
-      dispatch({ type: 'user/switchIsMotion' })
+      dispatch({ type: 'employee/switchIsMotion' })
     },
   }
 
   return (
     <div className="content-inner">
-      <Filter {...filterProps} />
       <List {...listProps} />
       {modalVisible && <Modal {...modalProps} />}
     </div>
   )
 }
 
-User.propTypes = {
-  user: PropTypes.object,
+Employee.propTypes = {
+  employee: PropTypes.object,
   location: PropTypes.object,
   dispatch: PropTypes.func,
   loading: PropTypes.object,
 }
 
-export default connect(({ user, loading }) => ({ user, loading }))(User)
+export default connect(({ employee, loading }) => ({ employee, loading }))(Employee)

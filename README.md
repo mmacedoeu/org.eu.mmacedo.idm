@@ -13,7 +13,7 @@ The generated token is using the new JWT schema where user roles and other info 
 
 # Protected Resources
 
-There is two entities backed by MongoDB, User entity for authentication and role based authorization and Employee entity for CRUD operations exposed via REST endpoints /users and /employees 
+There is two entities backed by MongoDB, User entity for authentication and role based authorization and Employee entity for CRUD operations exposed via REST endpoints /users and /employee 
 
 ## CORS
 
@@ -51,9 +51,41 @@ There is a demo server running at https://www.crudglobo.ml for front-end client 
 
 Testing is done manually via curl-client or web-client:
 
+To get access denied trying to get access_token without client credentials:
+
+`curl -v https://api.crudglobo.ml/oauth/token -d grant_type=password -d client_id=fooClientIdPassword -d username=admin -d password=admin`
+
+```json
+{"timestamp":1497892559092,"status":401,"error":"Unauthorized","message":"Full authentication is required to access this resource","path":"/oauth/token"}
+```
+
+To get access denied trying to provide bad password credentials:
+
+`curl -v https://fooClientIdPassword:secret@api.crudglobo.ml/oauth/token -d grant_type=password -d client_id=fooClientIdPassword -d username=admin -d password=123`
+
+```json
+{"error":"invalid_grant","error_description":"Bad credentials"}
+```
+
+To get access denied trying to access a resource without credentials:
+
+`curl https://fooClientIdPassword:secret@api.crudglobo.ml`
+
+```json
+{"error":"unauthorized","error_description":"Full authentication is required to access this resource"}
+```
+
 To get and Access Token via curl:
 
 `curl -v https://fooClientIdPassword:secret@api.crudglobo.ml/oauth/token -d grant_type=password -d client_id=fooClientIdPassword -d username=admin -d password=admin`
+
+```json
+{"access_token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE0OTc4OTU1NzQsInVzZXJfbmFtZSI6ImFkbWluIiwiYXV0aG9yaXRpZXMiOlsiUk9MRV9BRE1JTiJdLCJqdGkiOiI5MzkxNjQxYy0xOGFjLTQ3M2UtOGYwMy1lMjZhMGFkZjFhNWYiLCJjbGllbnRfaWQiOiJmb29DbGllbnRJZFBhc3N3b3JkIiwic2NvcGUiOlsiZm9vIiwicmVhZCIsIndyaXRlIl19.ucPEhqHvt2TcqCljPNonDddzGJIBi6ag2gYcl3a_pPs","token_type":"bearer","refresh_token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJhZG1pbiIsInNjb3BlIjpbImZvbyIsInJlYWQiLCJ3cml0ZSJdLCJhdGkiOiI5MzkxNjQxYy0xOGFjLTQ3M2UtOGYwMy1lMjZhMGFkZjFhNWYiLCJleHAiOjE1MDA0ODM5NzQsImF1dGhvcml0aWVzIjpbIlJPTEVfQURNSU4iXSwianRpIjoiYmEyNWVkZDMtNzI5NS00Nzk4LTkwYjUtNmI0MTgxMDZjMTkzIiwiY2xpZW50X2lkIjoiZm9vQ2xpZW50SWRQYXNzd29yZCJ9.NPWfBVaDII8oV0xyyCY0TRlXfUGBzy_rNPwhlaIPqxs","expires_in":3599,"scope":"foo read write","jti":"9391641c-18ac-473e-8f03-e26a0adf1a5f"}
+```
+
+`export access_token="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE0OTc4OTU1NzQsInVzZXJfbmFtZSI6ImFkbWluIiwiYXV0aG9yaXRpZXMiOlsiUk9MRV9BRE1JTiJdLCJqdGkiOiI5MzkxNjQxYy0xOGFjLTQ3M2UtOGYwMy1lMjZhMGFkZjFhNWYiLCJjbGllbnRfaWQiOiJmb29DbGllbnRJZFBhc3N3b3JkIiwic2NvcGUiOlsiZm9vIiwicmVhZCIsIndyaXRlIl19.ucPEhqHvt2TcqCljPNonDddzGJIBi6ag2gYcl3a_pPs"`
+
+
 
 ## Credentials
 

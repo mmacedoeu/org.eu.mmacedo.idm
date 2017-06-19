@@ -19,7 +19,7 @@ public class Employee {
 	private String title;
 	private String phone;
 	private String department;
-	private Employee manager;
+	private String manager;
 	private Date birth;
 	private BigDecimal salary;
 	
