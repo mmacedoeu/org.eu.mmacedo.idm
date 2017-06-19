@@ -9,7 +9,7 @@ module.exports = {
   iconFontJS: '/iconfont.js',
   baseURL: '//localhost:8000/api/v1',
   YQL: ['//www.zuimeitianqi.com'],
-  CORS: ['//localhost:8080'],
+  CORS: ['//api.crudglobo.ml'],
   openPages: ['/login'],
   apiPrefix: '/api/v1',
   client_id: client_id,
