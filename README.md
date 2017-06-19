@@ -7,9 +7,17 @@ This solution provides both oauth2 Authorization Server and Resource Server unif
 Authorization Server is binded to uri /oauth/token and /oauth/authorize
 but client authorization is currently fixed in memory, you can use the token endpoint to get new access token and refresh token
 
+## Json Web Token
+
+The generated token is using the new JWT schema where user roles and other info is cryptographically secured and there is not need for the resource server to send the token to the Authorization endpoint asking for validation. This is done by having the symmetrical key and thus evicting a net trip. 
+
 # Protected Resources
 
 There is two entities backed by MongoDB, User entity for authentication and role based authorization and Employee entity for CRUD operations exposed via REST endpoints /users and /employees 
+
+## CORS
+
+All endpoints are CORS enabled and can securely used in a web browser
 
 # Web client
 
@@ -34,3 +42,19 @@ Make sure you have nodejs and npm, you can also use yarn in place of npm:
 To run a local development environment:
 
 `npm run dev` or `yarn run dev`
+
+# Demo
+
+There is a demo server running at https://www.crudglobo.ml for front-end client and backend at https://api.crudglobo.ml
+
+## Testing
+
+Testing is done manually via curl-client or web-client:
+
+To get and Access Token via curl:
+
+`curl -v https://fooClientIdPassword:secret@api.crudglobo.ml/oauth/token -d grant_type=password -d client_id=fooClientIdPassword -d username=admin -d password=admin`
+
+## Credentials
+
+There is a hardcoded in memory admin:admin credential used to bootstrap the application once you create other Users by /users REST endpoint you can remove it on code and redeploy for security reasons

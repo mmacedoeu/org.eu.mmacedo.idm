@@ -82,11 +82,11 @@ const requestOptions = [
     method: 'get',
   },
   {
-    url: 'http://api.asilu.com/weather/',
+    url: '//api.asilu.com/weather/',
     desc: 'cross-domain request, but match config.baseURL(./src/utils/config.js)',
   },
   {
-    url: 'http://www.zuimeitianqi.com/zuimei/queryWeather',
+    url: '//www.zuimeitianqi.com/zuimei/queryWeather',
     data: {
       cityCode: '01010101',
     },
