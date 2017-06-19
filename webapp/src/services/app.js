@@ -44,13 +44,23 @@ export async function logout (params) {
 }
 
 export async function query (params) {
-  console.log("app/query params: \t", params)
   const username = localStorage.getItem('username')
   if (!username) {
+    console.log("no username found")
     return { message: 'Not Login' }
   }
 
-  if (localStorage.getItem('expires_in') > new Date().getTime()) {
+  const expires_in = localStorage.getItem('expires_in')
+  if (!expires_in) {
+    console.log("no expires_in found")
+    return { success: false}
+  }
+
+  console.log('expires_in: \t',expires_in)
+  const now = (new Date()).getTime()
+  console.log('time: \t',now)
+  if (now > expires_in) {
+    console.log("access_token has expired")
     return { success: false}
   }
 

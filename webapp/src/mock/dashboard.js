@@ -59,7 +59,7 @@ const Dashboard = Mock.mock({
     email: 'contato@mmacedo.eu.org',
     sales: 3241,
     sold: 3556,
-    avatar: 'http://tva4.sinaimg.cn/crop.0.0.996.996.180/6ee6a3a3jw8f0ks5pk7btj20ro0rodi0.jpg',
+    avatar: '//avatars3.githubusercontent.com/u/4959023?v=3',
   },
   'completed|12': [
     {

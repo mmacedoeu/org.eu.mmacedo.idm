@@ -17,7 +17,10 @@ export default {
       yield put({ type: 'hideLoginLoading' })
       console.log(data)
       if (data.success) {
-        const expires_in = (new Date()).getTime() + data.expires_in * 1000
+        const now = (new Date()).getTime()
+        console.log('time: \t',now)
+        const expires_in = now + data.expires_in * 60000
+        console.log('expires_in: \t',expires_in)
         localStorage.setItem('username', payload.username)
         localStorage.setItem('access_token', data.access_token)
         localStorage.setItem('refresh_token', data.refresh_token)
@@ -26,7 +29,6 @@ export default {
         const from = queryURL('from')
         yield put({ type: 'app/query' })
         if (from) {
-          console.log("from: \t", from)
           yield put(routerRedux.push(from))
         } else {
           yield put(routerRedux.push('/dashboard'))
