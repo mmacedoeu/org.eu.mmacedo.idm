@@ -27,14 +27,17 @@ public class OAuth2ResourceServerConfig extends ResourceServerConfigurerAdapter 
 
 	public JwtAccessTokenConverter accessTokenConverter() {
 		final JwtAccessTokenConverter converter = new JwtAccessTokenConverter();
-		final Resource resource = new ClassPathResource("public.txt");
-		String publicKey = null;
-		try {
-			publicKey = IOUtils.toString(resource.getInputStream());
-		} catch (final IOException e) {
-			throw new RuntimeException(e);
-		}
-		converter.setVerifierKey(publicKey);
+//		final Resource resource = new ClassPathResource("public.txt");
+//		String publicKey = null;
+//		try {
+//			publicKey = IOUtils.toString(resource.getInputStream());
+//		} catch (final IOException e) {
+//			throw new RuntimeException(e);
+//		}
+//		converter.setVerifierKey(publicKey);
+		
+		// fallback to symmetric keys as heroku doesn't have license for java advanced crypto
+		converter.setSigningKey("MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCg");
 		return converter;
 	}
 

@@ -63,9 +63,12 @@ public class OAuth2Configuration extends AuthorizationServerConfigurerAdapter {
 	@Bean
 	public JwtAccessTokenConverter accessTokenConverter() {
 		final JwtAccessTokenConverter converter = new JwtAccessTokenConverter();
-		final KeyStoreKeyFactory keyStoreKeyFactory = new KeyStoreKeyFactory(new ClassPathResource("jwtkey.jks"),
-				"globo.com".toCharArray());
-		converter.setKeyPair(keyStoreKeyFactory.getKeyPair("jwtkey"));
+//		final KeyStoreKeyFactory keyStoreKeyFactory = new KeyStoreKeyFactory(new ClassPathResource("jwtkey.jks"),
+//				"globo.com".toCharArray());
+//		converter.setKeyPair(keyStoreKeyFactory.getKeyPair("jwtkey"));
+		
+		// fallback to symmetric keys as heroku doesn't have license for java advanced crypto
+		converter.setSigningKey("MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCg");
 		return converter;
 	}
 }
