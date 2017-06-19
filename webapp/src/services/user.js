@@ -1,35 +1,47 @@
 import { request, config } from '../utils'
-const { api } = config
-const { user } = api
+const { api, CORS } = config
+const { users } = api
 
 export async function query (params) {
+  const access_token = localStorage.getItem('access_token')
   return request({
-    url: user,
+    url: CORS + users,
     method: 'get',
+    headers: {Authorization : `Bearer ${access_token}`},
     data: params,
   })
 }
 
 export async function create (params) {
+  const access_token = localStorage.getItem('access_token')
+  const {roles, ...data} = params
+  const newroles = roles && roles.split(' ')
   return request({
-    url: user.replace('/:id', ''),
+    url: CORS + users.replace('/:id', ''),
     method: 'post',
-    data: params,
+    headers: {Authorization : `Bearer ${access_token}`},
+    data: Object.assign(data, {roles: newroles}),
   })
 }
 
 export async function remove (params) {
+  const access_token = localStorage.getItem('access_token')
   return request({
-    url: user,
+    url: CORS + users + '/' + params.id,
     method: 'delete',
-    data: params,
+    headers: {Authorization : `Bearer ${access_token}`},
   })
 }
 
 export async function update (params) {
+  const access_token = localStorage.getItem('access_token')
+  const {id, password, roles, ...data} = params
+  Object.keys(data).forEach(k => (!data[k] && data[k] !== undefined) && delete data[k]);
+  const newroles = roles && roles.split(' ')
   return request({
-    url: user,
+    url: CORS + users + '/' + id,
     method: 'patch',
-    data: params,
+    headers: {Authorization : `Bearer ${access_token}`},
+    data: Object.assign(data, {roles: newroles}),
   })
 }

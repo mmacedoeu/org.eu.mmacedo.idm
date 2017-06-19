@@ -60,18 +60,20 @@ const fetch = (options) => {
     case 'get':
       return axios.get(url, {
         params: cloneData,
-        auth: auth
+        auth: auth,
+        headers: headers,
       })
     case 'delete':
       return axios.delete(url, {
         data: cloneData,
+        headers: headers,
       })
     case 'post':
       return axios.post(url, cloneData, {auth: auth, headers: headers})
     case 'put':
-      return axios.put(url, cloneData)
+      return axios.put(url, cloneData, {auth: auth, headers: headers})
     case 'patch':
-      return axios.patch(url, cloneData)
+      return axios.patch(url, cloneData, {auth: auth, headers: headers})
     default:
       return axios(options)
   }

@@ -36,17 +36,17 @@ const List = ({
       key: 'title'
     }, {
       title: 'First Name',
-      dataIndex: 'firstname',
-      key: 'firstname',
-      render: (text, record) => <Link to={`employee/${record.id}`}>{text}</Link>
+      dataIndex: 'firstName',
+      key: 'firstName',
     }, {
       title: 'Last Name',
-      dataIndex: 'lastname',
+      dataIndex: 'lastName',
       key: 'lastname'
     }, {
       title: 'User Name',
-      dataIndex: 'username',
-      key: 'username'
+      dataIndex: 'userName',
+      key: 'userName',
+      width: 100
     }, {
       title: 'Phone',
       dataIndex: 'phone',
@@ -56,11 +56,12 @@ const List = ({
       dataIndex: 'department',
       key: 'department'
     }, {
-      title: 'Birth',
-      dataIndex: 'birth',
-      key: 'birth'
+      title: 'Manager',
+      dataIndex: 'manager',
+      key: 'manager'
     }, {
       title: 'Salary',
+      dataIndex: 'salary',
       key: 'salary',
       width: 100
     }, {
@@ -77,7 +78,8 @@ const List = ({
             name: 'Delete'
           }
         ]}/>
-      }
+      },
+      fixed: 'right',
     }
   ]
 

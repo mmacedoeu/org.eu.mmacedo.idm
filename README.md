@@ -83,10 +83,47 @@ To get and Access Token via curl:
 {"access_token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE0OTc4OTU1NzQsInVzZXJfbmFtZSI6ImFkbWluIiwiYXV0aG9yaXRpZXMiOlsiUk9MRV9BRE1JTiJdLCJqdGkiOiI5MzkxNjQxYy0xOGFjLTQ3M2UtOGYwMy1lMjZhMGFkZjFhNWYiLCJjbGllbnRfaWQiOiJmb29DbGllbnRJZFBhc3N3b3JkIiwic2NvcGUiOlsiZm9vIiwicmVhZCIsIndyaXRlIl19.ucPEhqHvt2TcqCljPNonDddzGJIBi6ag2gYcl3a_pPs","token_type":"bearer","refresh_token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJhZG1pbiIsInNjb3BlIjpbImZvbyIsInJlYWQiLCJ3cml0ZSJdLCJhdGkiOiI5MzkxNjQxYy0xOGFjLTQ3M2UtOGYwMy1lMjZhMGFkZjFhNWYiLCJleHAiOjE1MDA0ODM5NzQsImF1dGhvcml0aWVzIjpbIlJPTEVfQURNSU4iXSwianRpIjoiYmEyNWVkZDMtNzI5NS00Nzk4LTkwYjUtNmI0MTgxMDZjMTkzIiwiY2xpZW50X2lkIjoiZm9vQ2xpZW50SWRQYXNzd29yZCJ9.NPWfBVaDII8oV0xyyCY0TRlXfUGBzy_rNPwhlaIPqxs","expires_in":3599,"scope":"foo read write","jti":"9391641c-18ac-473e-8f03-e26a0adf1a5f"}
 ```
 
+on bash:
+
 `export access_token="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE0OTc4OTU1NzQsInVzZXJfbmFtZSI6ImFkbWluIiwiYXV0aG9yaXRpZXMiOlsiUk9MRV9BRE1JTiJdLCJqdGkiOiI5MzkxNjQxYy0xOGFjLTQ3M2UtOGYwMy1lMjZhMGFkZjFhNWYiLCJjbGllbnRfaWQiOiJmb29DbGllbnRJZFBhc3N3b3JkIiwic2NvcGUiOlsiZm9vIiwicmVhZCIsIndyaXRlIl19.ucPEhqHvt2TcqCljPNonDddzGJIBi6ag2gYcl3a_pPs"`
+
+To view avaliable Resource endpoints:
+
+`curl https://api.crudglobo.ml -H "Authorization: Bearer ${access_token}"`
+
+```json
+{
+  "_links" : {
+    "employee" : {
+      "href" : "http://api.crudglobo.ml/employee{?page,size,sort}",
+      "templated" : true
+    },
+    "users" : {
+      "href" : "http://api.crudglobo.ml/users{?page,size,sort}",
+      "templated" : true
+    },
+    "profile" : {
+      "href" : "http://api.crudglobo.ml/profile"
+    }
+  }
+}
+```
+
+To list employees: 
+
+`curl https://api.crudglobo.ml/employee -H "Authorization: Bearer ${access_token}"`
 
 
 
 ## Credentials
 
 There is a hardcoded in memory admin:admin credential used to bootstrap the application once you create other Users by /users REST endpoint you can remove it on code and redeploy for security reasons
+
+# Roadmap
+
+*  Map user roles to token scopes
+*  Field level security by roles to access things like Salary
+*  Web client update password
+*  Web client refresh token
+*  Web client automatic logout after token expired
+*  Two/Multi Factor Authentication

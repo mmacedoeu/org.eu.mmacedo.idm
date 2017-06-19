@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import moment from 'moment'
 import {
   Form,
   Input,
@@ -40,7 +41,6 @@ const modal = ({
         ...getFieldsValue(),
         key: item.key
       }
-      data.address = data.address.join(' ')
       onOk(data)
     })
   }
@@ -104,9 +104,9 @@ const modal = ({
         <FormItem label="Manager" hasFeedback {...formItemLayout}>
           {getFieldDecorator('manager', {initialValue: item.manager})(<Input/>)}
         </FormItem>
-        <FormItem label="Birth Date" hasFeedback {...formItemLayout}>
-          {getFieldDecorator('birth', {initialValue: item.birth})(<DatePicker/>)}
-        </FormItem>
+        {/* <FormItem label="Birth Date" hasFeedback {...formItemLayout}>
+          {getFieldDecorator('birth', {initialValue: moment(item.birth, 'DD/MM/YYYY')})(<DatePicker/>)}
+        </FormItem> */}
         <FormItem label="Salary" hasFeedback {...formItemLayout}>
           {getFieldDecorator('salary', {
             initialValue: item.salary,
@@ -115,8 +115,7 @@ const modal = ({
                 required: true
               }
             ]
-          })(<InputNumber defaultValue={1000} formatter={value => `$ ${value.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}`}
-                          parser={value => value.replace(/\$\s?|(,*)/g, '')}/>)}
+          })(<InputNumber parser={value => value.replace(/\$\s?|(,*)/g, '')}/>)}
         </FormItem>
       </Form>
     </Modal>

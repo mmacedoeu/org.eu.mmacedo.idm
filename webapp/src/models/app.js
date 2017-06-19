@@ -34,7 +34,6 @@ export default {
       payload,
     }, { call, put }) {
       const data = yield call(query, parse(payload))
-      console.log("app/query data: \t", data)
       if (data.success && data.user) {
         yield put({
           type: 'querySuccess',

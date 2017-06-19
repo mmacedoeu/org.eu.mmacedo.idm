@@ -1,5 +1,4 @@
-import { create, remove, update } from '../services/user'
-import { query } from '../services/users'
+import { create, remove, update, query } from '../services/user'
 import { parse } from 'qs'
 
 export default {
@@ -13,7 +12,7 @@ export default {
     modalType: 'create',
     isMotion: localStorage.getItem('antdAdminUserIsMotion') === 'true',
     pagination: {
-      showSizeChanger: true,
+      showSizeChanger: false,
       showQuickJumper: true,
       showTotal: total => `${total}`,
       current: 1,
@@ -43,11 +42,11 @@ export default {
         yield put({
           type: 'querySuccess',
           payload: {
-            list: data.data,
+            list: data._embedded.users,
             pagination: {
               current: Number(payload.page) || 1,
-              pageSize: Number(payload.pageSize) || 10,
-              total: data.total,
+              pageSize: Number(data.page.size) || 10,
+              total: data.page.totalElements,
             },
           },
         })

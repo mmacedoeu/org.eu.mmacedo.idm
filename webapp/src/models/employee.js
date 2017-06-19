@@ -13,7 +13,7 @@ export default {
     modalType: 'create',
     isMotion: localStorage.getItem('antdAdminUserIsMotion') === 'true',
     pagination: {
-      showSizeChanger: true,
+      showSizeChanger: false,
       showQuickJumper: true,
       showTotal: total => `${total}`,
       current: 1,
@@ -37,17 +37,18 @@ export default {
   effects: {
 
     *query ({ payload }, { call, put }) {
+      console.log(location.search)
       payload = parse(location.search.substr(1))
       const data = yield call(query, payload)
       if (data) {
         yield put({
           type: 'querySuccess',
           payload: {
-            list: data.data,
+            list: data._embedded.employee,
             pagination: {
               current: Number(payload.page) || 1,
-              pageSize: Number(payload.pageSize) || 10,
-              total: data.total,
+              pageSize: Number(data.page.size) || 10,
+              total: data.page.totalElements,
             },
           },
         })

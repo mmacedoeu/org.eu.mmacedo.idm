@@ -127,14 +127,14 @@ const Dashboard = Mock.mock({
 
 export async function myCity (params) {
   return request({
-    url: '//www.zuimeitianqi.com/zuimei/myCity',
+    url: 'http://www.zuimeitianqi.com/zuimei/myCity',
     data: params,
   })
 }
 
 export async function queryWeather (params) {
   return request({
-    url: '//www.zuimeitianqi.com/zuimei/queryWeather',
+    url: 'http://www.zuimeitianqi.com/zuimei/queryWeather',
     data: params,
   })
 }

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { routerRedux } from 'dva/router'
 import { connect } from 'dva'
 import List from './List'
+import Filter from './Filter'
 import Modal from './Modal'
 
 const Employee = ({ location, dispatch, employee, loading }) => {
@@ -104,6 +105,7 @@ const Employee = ({ location, dispatch, employee, loading }) => {
 
   return (
     <div className="content-inner">
+      <Filter {...filterProps} />      
       <List {...listProps} />
       {modalVisible && <Modal {...modalProps} />}
     </div>
