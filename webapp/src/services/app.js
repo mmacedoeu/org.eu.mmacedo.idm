@@ -56,9 +56,7 @@ export async function query (params) {
     return { success: false}
   }
 
-  console.log('expires_in: \t',expires_in)
   const now = (new Date()).getTime()
-  console.log('time: \t',now)
   if (now > expires_in) {
     console.log("access_token has expired")
     return { success: false}

@@ -18,9 +18,7 @@ export default {
       console.log(data)
       if (data.success) {
         const now = (new Date()).getTime()
-        console.log('time: \t',now)
         const expires_in = now + data.expires_in * 60000
-        console.log('expires_in: \t',expires_in)
         localStorage.setItem('username', payload.username)
         localStorage.setItem('access_token', data.access_token)
         localStorage.setItem('refresh_token', data.refresh_token)
